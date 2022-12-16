@@ -1,0 +1,98 @@
+# if you're only using something a few times, import the whole module and write it out the long way
+# so that you can see that it's the module that contains the class: import turtle...timmy = turtle.Turtle()
+
+# if you're using something from a module 3 or more times, use "from turtle import Turtle" so you can write
+# tommy = Turtle()
+
+# don't use "from turtle import *" because it isn't expressive (when you read your code it won't be easy to tell
+# where it came from) and the python community doesn't like it
+
+# you can use an alias for long module names, like import pandas as pd
+
+# some modules are packaged with the python standard library (like Turtle), but others aren't, so you'll have to
+# install them before importing them, use pypi.org for this
+
+from turtle import Turtle, Screen
+import random
+
+tina = Turtle()
+tina.shape("turtle")
+tina.color("#270c47")
+
+# create the screen, set the screen color-mode in order to use rgb 0-255 numbers
+screen = Screen()
+screen.colormode(255)
+
+# position the turtle in the upper left corner for challenge 1
+tina.penup()
+tina.goto(-250, 350)
+tina.pendown()
+
+# CHALLENGE 1: draw a square
+for side in range(4):
+    tina.right(90)
+    tina.forward(100)
+
+# position the turtle for challenge 2
+tina.penup()
+tina.goto(-350, 200)
+tina.pendown()
+
+# CHALLENGE 2: draw a dashed line
+for dash in range(15):
+    tina.forward(10)
+    tina.penup()
+    tina.forward(10)
+    tina.pendown()
+
+# position the turtle for challenge 3
+tina.penup()
+tina.goto(100, 350)
+tina.pendown()
+
+
+# CHALLENGE 3: draw a triangle, square, pentagon, hexagon, heptagon, octagon, nonagon, and decagon
+def draw_shape(sides):
+    # calculate degrees to turn
+    angle = 360 / sides
+
+    # set a random pen r
+    red = random.randint(0, 255)
+    green = random.randint(0, 255)
+    blue = random.randint(0, 255)
+    tina.color((red, green, blue))
+
+    # draw the shape
+    for side in range(sides):
+        tina.forward(100)
+        tina.right(angle)
+
+
+for shape in range(3, 11):
+    # for each shape from triangle through decagon
+    draw_shape(shape)
+
+# position the turtle for challenge 4
+tina.penup()
+tina.goto(-200, 0)
+tina.pendown()
+
+
+# CHALLENGE 4: draw a random walk
+tina.speed(10)
+tina.pensize(10)
+directions = [0, 90, 180, 270]
+
+for _ in range(200):
+    color = random.randint(0, 255)
+    tina.color(color, color, color)
+    tina.setheading(random.choice(directions))
+    tina.forward(20)
+
+
+
+
+# keep the screen open until clicked
+screen.exitonclick()
+
+
